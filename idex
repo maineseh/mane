@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Temperatura</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center"><i class="fas fa-thermometer-half"></i> Conversor de Temperatura</h1>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <input type="number" id="temp" class="form-control" placeholder="Digite a temperatura">
+            </div>
+            <div class="col-md-6">
+                <select id="escala" class="form-control">
+                    <option value="C">Celsius</option>
+                    <option value="F">Fahrenheit</option>
+                    <option value="K">Kelvin</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" onclick="converterTemperatura()"><i class="fas fa-sync"></i> Converter</button>
+        <div id="resultado" class="mt-3"></div>
+    </div>
+
+    <script>
+        function converterTemperatura() {
+            var temp = document.getElementById('temp').value;
+            var escala = document.getElementById('escala').value;
+            var celsius, fahrenheit, kelvin;
+
+            switch(escala) {
+                case 'C':
+                    celsius = temp;
+                    fahrenheit = celsius * 9.0 / 5.0 + 32.0;
+                    kelvin = celsius + 273.15;
+                    break;
+                case 'F':
+                    fahrenheit = temp;
+                    celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+                    kelvin = celsius + 273.15;
+                    break;
+                case 'K':
+                    kelvin = temp;
+                    celsius = kelvin - 273.15;
+                    fahrenheit = celsius * 9.0 / 5.0 + 32.0;
+                    break;
+            }
+
+            document.getElementById('resultado').innerHTML = 
+                'Celsius: ' + celsius.toFixed(2) + '<br>' +
+                'Fahrenheit: ' + fahrenheit.toFixed(2) + '<br>' +
+                'Kelvin: ' + kelvin.toFixed(2);
+        }
+    </script>
+</body>
+</html>
